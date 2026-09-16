@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat  = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  RECEPCIONISTA
+  MEDICO
+  GERENCIA
+}
+
+enum Estado {
+  COMPLETADA
+  CANCELADA
+  PROGRAMADA
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  nombre String
+  email String @unique
+  password String
+  role Role
+
+  @@map("users")
+}
+
+model Medico {
+  id Int @id @default(autoincrement())
+  nombre String
+  email String
+  telefono String
+  especialidadId Int @map("especialidad_id")
+  cita Cita[]
+
+  especialidad Especialidad @relation(fields: [especialidadId], references: [id],onDelete: Cascade)
+  @@map("medicos")
+}
+
+model Especialidad {
+  id Int @id @default(autoincrement())
+  nombre String @unique
+  medico Medico[]
+
+  @@map("especialidades")
+}
+
+model Paciente {
+  id Int @id @default(autoincrement())
+  nombre String
+  fechaNacimiento DateTime @map("fecha_nacimiento")
+  email String
+  telefono String
+  cita Cita[]
+
+  @@map("pacientes")
+}
+
+model Cita {
+  id Int @id @default(autoincrement())
+  estado Estado @default(PROGRAMADA)
+  fecha DateTime @map("fecha_cita")
+
+  pacienteId Int @map("paciente_id")
+  medicoId Int @map("medico_id")
+  medico Medico @relation(fields: [medicoId], references: [id])
+  paciente Paciente @relation(fields: [pacienteId], references: [id])
+  @@map("citas")
+}
