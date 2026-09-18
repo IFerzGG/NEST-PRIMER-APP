@@ -1,5 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { CreatePacienteDto } from './dto/create-paciente.dto.js';
+import { UpdatePacienteDto } from './dto/update-paciente.dto.js';
 
 @Injectable()
 export class PacienteService {
@@ -22,13 +24,18 @@ export class PacienteService {
         return resultado;
     }
 
-    async create(data:{nombre:string, fechaNacimiento:Date, email:string, telefono:string}){
+    async create(data:CreatePacienteDto){
+        const fecha = new Date(data.fechaNacimiento);
+        if(fecha > new Date()){
+            throw new BadRequestException("La fecha no puede ser futura")
+        }
+        
         return await this.prisma.paciente.create({
             data,
         });
     }
 
-    async update(id:number, data:{nombre?:string, fechaNacimiento?:Date, email?:string, telefono?:string}){
+    async update(id:number, data:UpdatePacienteDto){
         const encontrado = await this.prisma.paciente.findUnique({
             where:{id},
         });

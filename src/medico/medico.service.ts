@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { CreateMedicoDto } from './dto/create-medico.dto.js';
+import { UpdateMedicoDto } from './dto/update-medico.dto.js';
 
 @Injectable()
 export class MedicoService {
@@ -21,13 +23,13 @@ export class MedicoService {
             return resultado;
         }
     
-        async create(data:{nombre:string, email:string, telefono:string, especialidadId:number}){
+        async create(data:CreateMedicoDto){
             return await this.prisma.medico.create({
                 data,
             });
         }
     
-        async update(id:number, data:{nombre?:string, email?:string, telefono?:string}){
+        async update(id:number, data:UpdateMedicoDto){
             const encontrado = await this.prisma.medico.findUnique({
                 where:{id},
             });
