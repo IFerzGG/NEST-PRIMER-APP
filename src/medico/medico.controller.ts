@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { MedicoService } from './medico.service.js';
+import { CreateMedicoDto } from './dto/create-medico.dto.js';
+import { UpdateMedicoDto } from './dto/update-medico.dto.js';
 
 @Controller('medico')
 export class MedicoController {
@@ -16,12 +18,12 @@ export class MedicoController {
     }
 
     @Post()
-    create(@Body() data:{nombre:string, email:string, telefono:string, especialidadId:number}){
+    create(@Body() data:CreateMedicoDto){
         return this.medicoService.create(data);
     }
 
     @Patch(":id")
-    update(@Param("id") id:string, @Body() data:{nombre?:string, email?:string, telefono?:string}){
+    update(@Param("id") id:string, @Body() data:UpdateMedicoDto){
         return this.medicoService.update(+id,data);
     }
 
