@@ -16,7 +16,7 @@ export class MedicoService {
                 where:{id}
             });
             if(!resultado){
-                throw new NotFoundException("Paciente no encontrado");
+                throw new NotFoundException("Medico no encontrado");
             }
             return resultado;
         }
@@ -32,7 +32,7 @@ export class MedicoService {
                 where:{id},
             });
             if(!encontrado){
-                throw new NotFoundException("Paciente no encontrado");
+                throw new NotFoundException("Medico no encontrado");
             }
             return await this.prisma.medico.update({
                 where:{id},
@@ -45,7 +45,7 @@ export class MedicoService {
                 where:{id},
             });
             if(!encontrado){
-                throw new NotFoundException("Paciente no encontrado");
+                throw new NotFoundException("Medico no encontrado");
             }
             return await this.prisma.medico.delete({
                 where:{id},
