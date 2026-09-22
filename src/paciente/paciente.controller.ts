@@ -2,8 +2,14 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { PacienteService } from './paciente.service.js';
 import { CreatePacienteDto } from './dto/create-paciente.dto.js';
 import { UpdatePacienteDto } from './dto/update-paciente.dto.js';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
+import { RolesGuard } from '../auth/guards/roles.guard.js';
+import { Roles } from '../auth/decorators/roles.decorator.js';
 
 @Controller('paciente')
+@UseGuards(JwtAuthGuard,RolesGuard)
+@Roles('RECEPCIONISTA')
 export class PacienteController {
     constructor(private readonly pacienteService:PacienteService){}
 
