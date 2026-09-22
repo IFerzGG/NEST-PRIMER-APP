@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { Prisma } from '../../generated/prisma/client.js';
 import {
   ArgumentsHost,

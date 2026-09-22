@@ -2,8 +2,14 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { MedicoService } from './medico.service.js';
 import { CreateMedicoDto } from './dto/create-medico.dto.js';
 import { UpdateMedicoDto } from './dto/update-medico.dto.js';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
+import { RolesGuard } from '../auth/guards/roles.guard.js';
+import { Roles } from '../auth/decorators/roles.decorator.js';
 
 @Controller('medico')
+@UseGuards(JwtAuthGuard,RolesGuard)
+@Roles('RECEPCIONISTA', 'GERENCIA')
 export class MedicoController {
     constructor(private readonly medicoService:MedicoService){}
 

@@ -8,8 +8,8 @@ export class CreatePacienteDto{
     nombre:string;
 
     @IsNotEmpty({message:"La Fecha es obligatoria"})
-    @IsDateString()
-    @MaxDate(new Date(),{message:"La Fehca no puede ser Futura"})
+    @IsDateString({},{message:'La fecha debe tener el format correcto'})
+    @MaxDate(new Date(),{message:"La Fecha no puede ser Futura"})
     fechaNacimiento:Date;
 
     @IsEmail({},{message:"El email no tiene el formato correcto"})
