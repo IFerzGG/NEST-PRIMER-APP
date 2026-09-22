@@ -3,12 +3,14 @@ import { AppModule, ObserveInstrument } from './app.module.js';
 import "dotenv/config";
 import { ValidationPipe } from '@nestjs/common';
 import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.js';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     instrument: ObserveInstrument,
   });
 
+//app.useGlobalGuards(new JwtAuthGuard());
   app.useGlobalFilters(new PrismaExceptionFilter());
   app.useGlobalPipes(new ValidationPipe({
     whitelist:true,

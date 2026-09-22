@@ -8,8 +8,8 @@ import { RolesGuard } from '../auth/guards/roles.guard.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
 
 @Controller('paciente')
-@UseGuards(JwtAuthGuard,RolesGuard)
-@Roles('RECEPCIONISTA')
+//@UseGuards(JwtAuthGuard,RolesGuard)
+//@Roles('RECEPCIONISTA')
 export class PacienteController {
     constructor(private readonly pacienteService:PacienteService){}
 
