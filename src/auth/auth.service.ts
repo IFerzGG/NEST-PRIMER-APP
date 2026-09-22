@@ -19,7 +19,7 @@ export class AuthService {
             throw new UnauthorizedException("Credenciales Incorrectas");
         }
 
-        const isMatch = await bcrypt.hash(loginDto.password, user.password)
+        const isMatch = await bcrypt.compare(loginDto.password, user.password)
         if(!isMatch){
             throw new UnauthorizedException("Credenciales Incorrectas")
         }
