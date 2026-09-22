@@ -7,6 +7,8 @@ import { PacienteModule } from './paciente/paciente.module.js';
 import { MedicoModule } from './medico/medico.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { UsersModule } from './users/users.module.js';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -26,6 +28,6 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,{provide:APP_GUARD,useClass:JwtAuthGuard}],
 })
 export class AppModule {}
