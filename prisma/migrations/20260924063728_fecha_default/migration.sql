@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "citas" ALTER COLUMN "fecha_cita" SET DEFAULT CURRENT_TIMESTAMP;

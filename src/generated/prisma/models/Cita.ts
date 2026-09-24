@@ -277,7 +277,7 @@ export type CitaScalarWhereWithAggregatesInput = {
 
 export type CitaCreateInput = {
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   medico: Prisma.MedicoCreateNestedOneWithoutCitaInput
   paciente: Prisma.PacienteCreateNestedOneWithoutCitaInput
 }
@@ -285,7 +285,7 @@ export type CitaCreateInput = {
 export type CitaUncheckedCreateInput = {
   id?: number
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   pacienteId: number
   medicoId: number
 }
@@ -308,7 +308,7 @@ export type CitaUncheckedUpdateInput = {
 export type CitaCreateManyInput = {
   id?: number
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   pacienteId: number
   medicoId: number
 }
@@ -462,14 +462,14 @@ export type EnumEstadoFieldUpdateOperationsInput = {
 
 export type CitaCreateWithoutMedicoInput = {
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   paciente: Prisma.PacienteCreateNestedOneWithoutCitaInput
 }
 
 export type CitaUncheckedCreateWithoutMedicoInput = {
   id?: number
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   pacienteId: number
 }
 
@@ -512,14 +512,14 @@ export type CitaScalarWhereInput = {
 
 export type CitaCreateWithoutPacienteInput = {
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   medico: Prisma.MedicoCreateNestedOneWithoutCitaInput
 }
 
 export type CitaUncheckedCreateWithoutPacienteInput = {
   id?: number
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   medicoId: number
 }
 
@@ -552,7 +552,7 @@ export type CitaUpdateManyWithWhereWithoutPacienteInput = {
 export type CitaCreateManyMedicoInput = {
   id?: number
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   pacienteId: number
 }
 
@@ -579,7 +579,7 @@ export type CitaUncheckedUpdateManyWithoutMedicoInput = {
 export type CitaCreateManyPacienteInput = {
   id?: number
   estado?: $Enums.Estado
-  fecha: Date | string
+  fecha?: Date | string
   medicoId: number
 }
 
