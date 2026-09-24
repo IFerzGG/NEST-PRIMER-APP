@@ -6,6 +6,7 @@ import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 import { RolesGuard } from '../auth/guards/roles.guard.js';
 import { Roles } from '../auth/decorators/roles.decorator.js';
+import { Publico } from '../auth/decorators/publico.decorator.js';
 
 @Controller('paciente')
 //@UseGuards(JwtAuthGuard,RolesGuard)
@@ -14,6 +15,7 @@ export class PacienteController {
     constructor(private readonly pacienteService:PacienteService){}
 
     @Get()
+    @Publico()
     findAll(){
         return this.pacienteService.findAll();
     }

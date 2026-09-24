@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module.js';
 import { UsersModule } from './users/users.module.js';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
+import { CitasModule } from './citas/citas.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -26,6 +27,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     MedicoModule,
     AuthModule,
     UsersModule,
+    CitasModule,
   ],
   controllers: [AppController],
   providers: [AppService,{provide:APP_GUARD,useClass:JwtAuthGuard}],

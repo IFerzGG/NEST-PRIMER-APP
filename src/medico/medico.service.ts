@@ -18,7 +18,7 @@ export class MedicoService {
                 where:{id}
             });
             if(!resultado){
-                throw new NotFoundException("Paciente no encontrado");
+                throw new NotFoundException("Medico no encontrado");
             }
             return resultado;
         }
