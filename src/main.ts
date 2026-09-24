@@ -5,6 +5,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter.js';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard.js';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor.js';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -37,6 +39,8 @@ async function bootstrap() {
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, documentFactory);
+
+  app.useGlobalInterceptors(new LoggingInterceptor(), new TransformInterceptor())
 
   await app.listen(process.env.PORT ?? 3000);
 }
