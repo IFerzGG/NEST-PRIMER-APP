@@ -3,11 +3,13 @@ import jwt from 'jsonwebtoken';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_KEY } from '../decorators/publico.decorator.js';
 import { AuthService } from '../auth.service.js';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(
     private readonly reflector:Reflector,
+    private readonly configService: ConfigService
   ){}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -26,7 +28,7 @@ export class JwtAuthGuard implements CanActivate {
     try {
       request.user = jwt.verify(
         header.split(' ')[1],
-        process.env.JWT_SECRET as string,
+        this.configService.getOrThrow<string>('JWT_SECRET'),
       );
       return true;
     } catch {

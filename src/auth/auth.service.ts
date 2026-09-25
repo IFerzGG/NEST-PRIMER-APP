@@ -1,13 +1,17 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import { UsersService } from '../users/users.service.js';
 import { CreateUserDto } from '../users/dto/create-user.dto.js';
 import { LoginDto } from './dto/login.dto.js';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-    constructor(private readonly userService:UsersService){}
+    constructor(
+        private readonly userService:UsersService,
+        private readonly configService: ConfigService,
+    ){}
 
     async register(createUserDto:CreateUserDto){
         return await this.userService.create(createUserDto);
@@ -24,10 +28,16 @@ export class AuthService {
             throw new UnauthorizedException("Credenciales Incorrectas")
         }
 
+        const secret = this.configService.getOrThrow<string>('JWT_SECRET');
+        const expiresIn = this.configService.getOrThrow<string>('JWT_EXPIRES_IN');
+        const options: SignOptions = {
+            expiresIn: expiresIn as SignOptions['expiresIn'],
+        };
+
         const token = jwt.sign(
             {id: user.id, email: user.email, role: user.role, nombre:user.nombre},
-            process.env.JWT_SECRET as string,
-            {expiresIn: '8h'},
+            secret,
+            options,
         );
 
         return {token};
