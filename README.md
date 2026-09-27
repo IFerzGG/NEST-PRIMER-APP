@@ -1,114 +1,39 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+## jwt-auth.guards
+Cuando el cliente hace una peticion verificamos que realmente haya iniciado sesision o colocado su token generado al logearse, eso lo hicimos publico en app module
+# Decorator Publico
+Al poner el decorador @publico hacemos que el cliente pueda hacer una peticion al servidor sin tener un token generado
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## roles.guards
+Aqui verificamos si tiene el cliente el rol adecuado para hacer la peticion, En patch delete y post tiene que tener un cierto rol en especifico
+# Decorator Roles
+Aqui creamos los roles especificos que va a validar que tenga el cliente
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## logging.interceptor
+Aqui empieza a medir el tiempo cuando el cliente hace la peticion hasta que genera la respuesta el servidor
 
-## Description
+## ValidationPipe
+Se configura en en el main.ts y se agrega a las DTO para asi verificar si cumple con el formato adecuado de las body que mande el cliente, como por ejemplo que el email esta en formato adecuado
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## CitasController
+Despues de que haya pasado la peticion por las zonas de seguridad lo mandamos a la peticion correspondiente que haya echo y se manda al citasService
+# CitasService con PacienteService
+Create: Si la peticion fue mandada al post sirve para crear una cita nueva y lo primero que hace si existe el paciente al generarle una cita y mandamos la peticion al PACIENTE SERVICE par que lo encuentre.
+Tambien revisamos si existe al medico que se le asignara a la cita
+Despues al checar que si existe el medico y el paciente manda la peticion a la base de datos para asi crear la cita y lo retorna
 
-## Project setup
+FindAll: Aqui la peticion del cliente verifica que muestre las citas que hay en la base de datos
 
-```bash
-$ npm install
-```
+FindOne: Aqui se verifica si existe la cita que busca el cliente y si no retorna un error NOT FOUND al cliente
 
-## Compile and run the project
+Update: Aqui el cliente puede hacer modificaciones de una cita ya creada, como por ejemplo modificar el estado de la cita y si no encuentra la cita que mando el cliente retorna un error de NOT FOUND 
 
-```bash
-# development
-$ npm run start
+Delete: Aqui el cliente puede eliminar una cita que ya ha sido creada en la base de datos y si no esta la cita que quiere eliminar se retorna un error NOT FOUND
 
-# watch mode
-$ npm run start:dev
+## prisma-exception.filters
+Aqui generamos las respuestas HTTP que queremos mostrar al cliente cuando prisma genere un error en la base de datos, ya sea que no se encontro un registro o ese registro tenga un valor Unico
 
-# production mode
-$ npm run start:prod
-```
+## logging.interceptor
+Aqui la paticion respuesta pasa para registrar el tiempo total que se tardo en regresar del serividor al cliente
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Observability
-
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
-
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
-
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observer](https://observer.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## transform.interceptor
+Aqui modifica y tranforma el formato que se va a mostrar la respuesta el cliente 
