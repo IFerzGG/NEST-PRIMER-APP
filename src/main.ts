@@ -43,6 +43,9 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggingInterceptor(), new TransformInterceptor())
 
   const configService = app.get(ConfigService);
+  app.enableCors({
+    origin: configService.getOrThrow<string>('MY_FRONT')
+  })
   await app.listen(configService.getOrThrow<number>('PORT'));
 }
 await bootstrap();

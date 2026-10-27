@@ -20,4 +20,7 @@ export const envValidationSchema = Joi.object({
     JWT_EXPIRES_IN: Joi
         .string()
         .default('8h'),
+    MY_FRONT: Joi
+        .string()
+        .required(),
 })
