@@ -10,8 +10,9 @@ import { Publico } from '../auth/decorators/publico.decorator.js';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('paciente')
-@ApiBearerAuth('JWT-auth')
-@ApiResponse({ status:401, description: 'No tienes Permiso'})
+@Publico()
+//@ApiBearerAuth('JWT-auth')
+//@ApiResponse({ status:401, description: 'No tienes Permiso'})
 //@UseGuards(JwtAuthGuard,RolesGuard)
 //@Roles('RECEPCIONISTA')
 export class PacienteController {
@@ -32,8 +33,8 @@ export class PacienteController {
     }
 
     @Post()
-    @UseGuards(RolesGuard)
-    @Roles('RECEPCIONISTA')
+    //@UseGuards(RolesGuard)
+    //@Roles('RECEPCIONISTA')
     @ApiOperation({summary:'Creas a un Nuevo Paciente'})
     @ApiResponse({ status:200, description: 'Paciente Creado Exitosamente'})
     @ApiResponse({ status:400, description: 'Paciente Mal Formateado'})
@@ -42,8 +43,8 @@ export class PacienteController {
     }
 
     @Patch(":id")
-    @UseGuards(RolesGuard)
-    @Roles('RECEPCIONISTA','GERENCIA')
+    //@UseGuards(RolesGuard)
+    //@Roles('RECEPCIONISTA','GERENCIA')
     @ApiOperation({summary:'Actualizar a un Paciente en Especifico'})
     @ApiResponse({ status:200, description: 'Paciente Actualizado Exitosamente'})
     @ApiResponse({ status:404, description: 'Paciente No Encontrado'})
@@ -52,8 +53,8 @@ export class PacienteController {
     }
 
     @Delete(":id")
-    @UseGuards(RolesGuard)
-    @Roles('RECEPCIONISTA','GERENCIA')
+    //@UseGuards(RolesGuard)
+    //@Roles('RECEPCIONISTA','GERENCIA')
     @ApiOperation({summary:'Eliminar a un Paciente en Especifico'})
     @ApiResponse({ status:200, description: 'Paciente Eliminado Exitosamente'})
     @ApiResponse({ status:404, description: 'Paciente No Encontrado'})

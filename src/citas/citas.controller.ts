@@ -9,14 +9,15 @@ import { CreateCitaDto } from './dto/create-cita.dto.js';
 import { UpdateCitaDto } from './dto/update-cita.dto.js';
 
 @Controller('citas')
-@ApiBearerAuth('JWT-auth')
-@ApiResponse({ status:401, description: 'No tienes Permiso'})
+@Publico()
+//@ApiBearerAuth('JWT-auth')
+//@ApiResponse({ status:401, description: 'No tienes Permiso'})
 export class CitasController {
     constructor(private readonly citasService:CitasService){}
 
     @Post()
-    @UseGuards(RolesGuard)
-    @Roles('RECEPCIONISTA','GERENCIA')
+    //@UseGuards(RolesGuard)
+    //@Roles('RECEPCIONISTA','GERENCIA')
     @ApiOperation({summary:'Crea una Nueva cita'})
     @ApiResponse({ status:200, description:'Cita Creada Exitosamente'})
     @ApiResponse({ status:400, description:'Cita Mal Formateada'})
@@ -40,8 +41,8 @@ export class CitasController {
     }
 
     @Patch(':id')
-    @UseGuards(RolesGuard)
-    @Roles('RECEPCIONISTA','GERENCIA')
+    //@UseGuards(RolesGuard)
+    //@Roles('RECEPCIONISTA','GERENCIA')
     @ApiOperation({summary:'Actualizar Cita en Especifico'})
     @ApiResponse({ status:200, description:'Cita Actualizada Exitosamente'})
     @ApiResponse({ status:404, description:'Cita No Encontrada'})
@@ -50,8 +51,8 @@ export class CitasController {
     }
 
     @Delete(':id')
-    @UseGuards(RolesGuard)
-    @Roles('RECEPCIONISTA','GERENCIA')
+    //@UseGuards(RolesGuard)
+    //@Roles('RECEPCIONISTA','GERENCIA')
     @ApiOperation({summary:'Eliminar Cita en Especifico'})
     @ApiResponse({ status:200, description:'Cita Eliminada Exitosamente'})
     @ApiResponse({ status:404, description:'Cita No Encontrada'})

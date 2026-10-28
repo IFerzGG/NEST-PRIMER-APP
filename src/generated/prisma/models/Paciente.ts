@@ -37,6 +37,8 @@ export type PacienteSumAggregateOutputType = {
 export type PacienteMinAggregateOutputType = {
   id: number | null
   nombre: string | null
+  apellido: string | null
+  estado: $Enums.EstadoPaciente | null
   fechaNacimiento: Date | null
   email: string | null
   telefono: string | null
@@ -45,6 +47,8 @@ export type PacienteMinAggregateOutputType = {
 export type PacienteMaxAggregateOutputType = {
   id: number | null
   nombre: string | null
+  apellido: string | null
+  estado: $Enums.EstadoPaciente | null
   fechaNacimiento: Date | null
   email: string | null
   telefono: string | null
@@ -53,6 +57,8 @@ export type PacienteMaxAggregateOutputType = {
 export type PacienteCountAggregateOutputType = {
   id: number
   nombre: number
+  apellido: number
+  estado: number
   fechaNacimiento: number
   email: number
   telefono: number
@@ -71,6 +77,8 @@ export type PacienteSumAggregateInputType = {
 export type PacienteMinAggregateInputType = {
   id?: true
   nombre?: true
+  apellido?: true
+  estado?: true
   fechaNacimiento?: true
   email?: true
   telefono?: true
@@ -79,6 +87,8 @@ export type PacienteMinAggregateInputType = {
 export type PacienteMaxAggregateInputType = {
   id?: true
   nombre?: true
+  apellido?: true
+  estado?: true
   fechaNacimiento?: true
   email?: true
   telefono?: true
@@ -87,6 +97,8 @@ export type PacienteMaxAggregateInputType = {
 export type PacienteCountAggregateInputType = {
   id?: true
   nombre?: true
+  apellido?: true
+  estado?: true
   fechaNacimiento?: true
   email?: true
   telefono?: true
@@ -182,6 +194,8 @@ export type PacienteGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type PacienteGroupByOutputType = {
   id: number
   nombre: string
+  apellido: string
+  estado: $Enums.EstadoPaciente
   fechaNacimiento: Date
   email: string
   telefono: string
@@ -213,6 +227,8 @@ export type PacienteWhereInput = {
   NOT?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
   id?: Prisma.IntFilter<"Paciente"> | number
   nombre?: Prisma.StringFilter<"Paciente"> | string
+  apellido?: Prisma.StringFilter<"Paciente"> | string
+  estado?: Prisma.EnumEstadoPacienteFilter<"Paciente"> | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   email?: Prisma.StringFilter<"Paciente"> | string
   telefono?: Prisma.StringFilter<"Paciente"> | string
@@ -222,6 +238,8 @@ export type PacienteWhereInput = {
 export type PacienteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  apellido?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   fechaNacimiento?: Prisma.SortOrder
   email?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
@@ -234,6 +252,8 @@ export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.PacienteWhereInput[]
   NOT?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
   nombre?: Prisma.StringFilter<"Paciente"> | string
+  apellido?: Prisma.StringFilter<"Paciente"> | string
+  estado?: Prisma.EnumEstadoPacienteFilter<"Paciente"> | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   email?: Prisma.StringFilter<"Paciente"> | string
   telefono?: Prisma.StringFilter<"Paciente"> | string
@@ -243,6 +263,8 @@ export type PacienteWhereUniqueInput = Prisma.AtLeast<{
 export type PacienteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  apellido?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   fechaNacimiento?: Prisma.SortOrder
   email?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
@@ -259,6 +281,8 @@ export type PacienteScalarWhereWithAggregatesInput = {
   NOT?: Prisma.PacienteScalarWhereWithAggregatesInput | Prisma.PacienteScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Paciente"> | number
   nombre?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  apellido?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  estado?: Prisma.EnumEstadoPacienteWithAggregatesFilter<"Paciente"> | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
   email?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   telefono?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
@@ -266,6 +290,8 @@ export type PacienteScalarWhereWithAggregatesInput = {
 
 export type PacienteCreateInput = {
   nombre: string
+  apellido: string
+  estado?: $Enums.EstadoPaciente
   fechaNacimiento: Date | string
   email: string
   telefono: string
@@ -275,6 +301,8 @@ export type PacienteCreateInput = {
 export type PacienteUncheckedCreateInput = {
   id?: number
   nombre: string
+  apellido: string
+  estado?: $Enums.EstadoPaciente
   fechaNacimiento: Date | string
   email: string
   telefono: string
@@ -283,6 +311,8 @@ export type PacienteUncheckedCreateInput = {
 
 export type PacienteUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.StringFieldUpdateOperationsInput | string
@@ -292,6 +322,8 @@ export type PacienteUpdateInput = {
 export type PacienteUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.StringFieldUpdateOperationsInput | string
@@ -301,6 +333,8 @@ export type PacienteUncheckedUpdateInput = {
 export type PacienteCreateManyInput = {
   id?: number
   nombre: string
+  apellido: string
+  estado?: $Enums.EstadoPaciente
   fechaNacimiento: Date | string
   email: string
   telefono: string
@@ -308,6 +342,8 @@ export type PacienteCreateManyInput = {
 
 export type PacienteUpdateManyMutationInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.StringFieldUpdateOperationsInput | string
@@ -316,6 +352,8 @@ export type PacienteUpdateManyMutationInput = {
 export type PacienteUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.StringFieldUpdateOperationsInput | string
@@ -324,6 +362,8 @@ export type PacienteUncheckedUpdateManyInput = {
 export type PacienteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  apellido?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   fechaNacimiento?: Prisma.SortOrder
   email?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
@@ -336,6 +376,8 @@ export type PacienteAvgOrderByAggregateInput = {
 export type PacienteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  apellido?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   fechaNacimiento?: Prisma.SortOrder
   email?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
@@ -344,6 +386,8 @@ export type PacienteMaxOrderByAggregateInput = {
 export type PacienteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
+  apellido?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
   fechaNacimiento?: Prisma.SortOrder
   email?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
@@ -356,6 +400,10 @@ export type PacienteSumOrderByAggregateInput = {
 export type PacienteScalarRelationFilter = {
   is?: Prisma.PacienteWhereInput
   isNot?: Prisma.PacienteWhereInput
+}
+
+export type EnumEstadoPacienteFieldUpdateOperationsInput = {
+  set?: $Enums.EstadoPaciente
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -378,6 +426,8 @@ export type PacienteUpdateOneRequiredWithoutCitaNestedInput = {
 
 export type PacienteCreateWithoutCitaInput = {
   nombre: string
+  apellido: string
+  estado?: $Enums.EstadoPaciente
   fechaNacimiento: Date | string
   email: string
   telefono: string
@@ -386,6 +436,8 @@ export type PacienteCreateWithoutCitaInput = {
 export type PacienteUncheckedCreateWithoutCitaInput = {
   id?: number
   nombre: string
+  apellido: string
+  estado?: $Enums.EstadoPaciente
   fechaNacimiento: Date | string
   email: string
   telefono: string
@@ -409,6 +461,8 @@ export type PacienteUpdateToOneWithWhereWithoutCitaInput = {
 
 export type PacienteUpdateWithoutCitaInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.StringFieldUpdateOperationsInput | string
@@ -417,6 +471,8 @@ export type PacienteUpdateWithoutCitaInput = {
 export type PacienteUncheckedUpdateWithoutCitaInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  apellido?: Prisma.StringFieldUpdateOperationsInput | string
+  estado?: Prisma.EnumEstadoPacienteFieldUpdateOperationsInput | $Enums.EstadoPaciente
   fechaNacimiento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   telefono?: Prisma.StringFieldUpdateOperationsInput | string
@@ -456,6 +512,8 @@ export type PacienteCountOutputTypeCountCitaArgs<ExtArgs extends runtime.Types.E
 export type PacienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  apellido?: boolean
+  estado?: boolean
   fechaNacimiento?: boolean
   email?: boolean
   telefono?: boolean
@@ -466,6 +524,8 @@ export type PacienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type PacienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  apellido?: boolean
+  estado?: boolean
   fechaNacimiento?: boolean
   email?: boolean
   telefono?: boolean
@@ -474,6 +534,8 @@ export type PacienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type PacienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   nombre?: boolean
+  apellido?: boolean
+  estado?: boolean
   fechaNacimiento?: boolean
   email?: boolean
   telefono?: boolean
@@ -482,12 +544,14 @@ export type PacienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type PacienteSelectScalar = {
   id?: boolean
   nombre?: boolean
+  apellido?: boolean
+  estado?: boolean
   fechaNacimiento?: boolean
   email?: boolean
   telefono?: boolean
 }
 
-export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "fechaNacimiento" | "email" | "telefono", ExtArgs["result"]["paciente"]>
+export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nombre" | "apellido" | "estado" | "fechaNacimiento" | "email" | "telefono", ExtArgs["result"]["paciente"]>
 export type PacienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cita?: boolean | Prisma.Paciente$citaArgs<ExtArgs>
   _count?: boolean | Prisma.PacienteCountOutputTypeDefaultArgs<ExtArgs>
@@ -503,6 +567,8 @@ export type $PacientePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     nombre: string
+    apellido: string
+    estado: $Enums.EstadoPaciente
     fechaNacimiento: Date
     email: string
     telefono: string
@@ -932,6 +998,8 @@ export interface Prisma__PacienteClient<T, Null = never, ExtArgs extends runtime
 export interface PacienteFieldRefs {
   readonly id: Prisma.FieldRef<"Paciente", 'Int'>
   readonly nombre: Prisma.FieldRef<"Paciente", 'String'>
+  readonly apellido: Prisma.FieldRef<"Paciente", 'String'>
+  readonly estado: Prisma.FieldRef<"Paciente", 'EstadoPaciente'>
   readonly fechaNacimiento: Prisma.FieldRef<"Paciente", 'DateTime'>
   readonly email: Prisma.FieldRef<"Paciente", 'String'>
   readonly telefono: Prisma.FieldRef<"Paciente", 'String'>

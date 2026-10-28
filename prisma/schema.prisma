@@ -25,6 +25,19 @@ enum Estado {
   PROGRAMADA
 }
 
+enum EstadoPaciente {
+  ACTIVO
+  INACTIVO
+  EN_ESPERA
+}
+
+enum EstadoUrgencia {
+  BAJA
+  MEDIA
+  ALTA
+  CRITICA
+}
+
 model User {
   id Int @id @default(autoincrement())
   nombre String
@@ -58,6 +71,8 @@ model Especialidad {
 model Paciente {
   id Int @id @default(autoincrement())
   nombre String
+  apellido String
+  estado EstadoPaciente @default(ACTIVO)
   fechaNacimiento DateTime @map("fecha_nacimiento")
   email String
   telefono String
@@ -70,6 +85,8 @@ model Cita {
   id Int @id @default(autoincrement())
   estado Estado @default(PROGRAMADA)
   fecha DateTime @default(now())@map("fecha_cita")
+  motivo String
+  urgencia EstadoUrgencia @default(MEDIA)
 
   pacienteId Int @map("paciente_id")
   medicoId Int @map("medico_id")

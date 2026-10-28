@@ -32,6 +32,10 @@ export class CitasService {
     async findAll() {
         return await this.prisma.cita.findMany({
             orderBy:{id:"asc"},
+            include:{
+                medico:{select:{nombre:true}},
+                paciente:{select:{nombre:true}},
+            }
         });
     }
 

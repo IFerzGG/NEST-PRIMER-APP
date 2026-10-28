@@ -9,13 +9,15 @@ export class MedicoService {
 
     async findAll(){
         return await this.prisma.medico.findMany({
-            orderBy:{id:"asc"}
+            orderBy:{id:"asc"},
+            include:{especialidad:true},
         });
     }
 
     async findId(id:number){
             const resultado = await this.prisma.medico.findUnique({
-                where:{id}
+                where:{id},
+                include:{especialidad:true}
             });
             if(!resultado){
                 throw new NotFoundException("Medico no encontrado");

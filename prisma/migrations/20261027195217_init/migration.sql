@@ -4,6 +4,9 @@ CREATE TYPE "Role" AS ENUM ('RECEPCIONISTA', 'MEDICO', 'GERENCIA');
 -- CreateEnum
 CREATE TYPE "Estado" AS ENUM ('COMPLETADA', 'CANCELADA', 'PROGRAMADA');
 
+-- CreateEnum
+CREATE TYPE "EstadoPaciente" AS ENUM ('ACTIVO', 'INACTIVO', 'EN_ESPERA');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
@@ -38,6 +41,8 @@ CREATE TABLE "especialidades" (
 CREATE TABLE "pacientes" (
     "id" SERIAL NOT NULL,
     "nombre" TEXT NOT NULL,
+    "apellido" TEXT NOT NULL,
+    "estado" "EstadoPaciente" NOT NULL DEFAULT 'ACTIVO',
     "fecha_nacimiento" TIMESTAMP(3) NOT NULL,
     "email" TEXT NOT NULL,
     "telefono" TEXT NOT NULL,
@@ -49,7 +54,7 @@ CREATE TABLE "pacientes" (
 CREATE TABLE "citas" (
     "id" SERIAL NOT NULL,
     "estado" "Estado" NOT NULL DEFAULT 'PROGRAMADA',
-    "fecha_cita" TIMESTAMP(3) NOT NULL,
+    "fecha_cita" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "paciente_id" INTEGER NOT NULL,
     "medico_id" INTEGER NOT NULL,
 

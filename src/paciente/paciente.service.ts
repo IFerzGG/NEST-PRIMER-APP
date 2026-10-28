@@ -31,7 +31,7 @@ export class PacienteService {
         }
         
         return await this.prisma.paciente.create({
-            data,
+            data
         });
     }
 
