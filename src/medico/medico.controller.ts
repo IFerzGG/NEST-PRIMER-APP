@@ -10,8 +10,9 @@ import { Publico } from '../auth/decorators/publico.decorator.js';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('medico')
-@ApiBearerAuth('JWT-auth')
-@ApiResponse({ status:401, description: 'No tienes Permiso'})
+@Publico()
+//@ApiBearerAuth('JWT-auth')
+//@ApiResponse({ status:401, description: 'No tienes Permiso'})
 export class MedicoController {
     constructor(private readonly medicoService:MedicoService){}
 

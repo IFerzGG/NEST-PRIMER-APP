@@ -25,3 +25,22 @@ export const Estado = {
 } as const
 
 export type Estado = (typeof Estado)[keyof typeof Estado]
+
+
+export const EstadoPaciente = {
+  ACTIVO: 'ACTIVO',
+  INACTIVO: 'INACTIVO',
+  EN_ESPERA: 'EN_ESPERA'
+} as const
+
+export type EstadoPaciente = (typeof EstadoPaciente)[keyof typeof EstadoPaciente]
+
+
+export const EstadoUrgencia = {
+  BAJA: 'BAJA',
+  MEDIA: 'MEDIA',
+  ALTA: 'ALTA',
+  CRITICA: 'CRITICA'
+} as const
+
+export type EstadoUrgencia = (typeof EstadoUrgencia)[keyof typeof EstadoUrgencia]

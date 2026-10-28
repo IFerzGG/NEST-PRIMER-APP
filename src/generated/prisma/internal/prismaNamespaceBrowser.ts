@@ -107,6 +107,8 @@ export type EspecialidadScalarFieldEnum = (typeof EspecialidadScalarFieldEnum)[k
 export const PacienteScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
+  apellido: 'apellido',
+  estado: 'estado',
   fechaNacimiento: 'fechaNacimiento',
   email: 'email',
   telefono: 'telefono'
@@ -119,6 +121,8 @@ export const CitaScalarFieldEnum = {
   id: 'id',
   estado: 'estado',
   fecha: 'fecha',
+  motivo: 'motivo',
+  urgencia: 'urgencia',
   pacienteId: 'pacienteId',
   medicoId: 'medicoId'
 } as const

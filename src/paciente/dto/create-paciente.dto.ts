@@ -1,6 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Transform } from "class-transformer";
-import {IsDateString, IsEmail, IsNotEmpty, IsString, Matches, MaxDate} from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { Transform, Type } from "class-transformer";
+import {IsDate, IsDateString, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Matches, MaxDate} from "class-validator";
+import { EstadoPaciente } from "../../generated/prisma/enums.js";
 
 export class CreatePacienteDto{
     @ApiProperty({
@@ -13,11 +14,30 @@ export class CreatePacienteDto{
     nombre:string;
 
     @ApiProperty({
-        example:'1970-20-01',
+        example:'NombreCompleto',
+        description:"Insertar Nombre al ser Creado",
+    })
+    @IsString({message:"El nombre es una cadena de texto"})
+    @Transform(({value}) => value?.trim())
+    @IsNotEmpty({message:"El nombre es obligatorio"})
+    apellido:string;
+
+    @ApiPropertyOptional({
+        enum:EstadoPaciente,
+        example:'ACTIVO',
+        description:"Insertar ",
+    })
+    @IsEnum(EstadoPaciente)
+    @IsOptional()
+    estado?:EstadoPaciente;
+
+    @ApiProperty({
+        example:'1970-01-20',
         description:'La Fecha debe ser Escrita Correctamente'
     })
     @IsNotEmpty({message:"La Fecha es obligatoria"})
-    @IsDateString({},{message:'La fecha debe tener el format correcto'})
+    @Type(() => Date)
+    @IsDate({ message: 'Debes proporcionar una fecha válida' })
     @MaxDate(new Date(),{message:"La Fecha no puede ser Futura"})
     fechaNacimiento:Date;
 

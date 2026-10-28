@@ -863,6 +863,8 @@ export type EspecialidadScalarFieldEnum = (typeof EspecialidadScalarFieldEnum)[k
 export const PacienteScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
+  apellido: 'apellido',
+  estado: 'estado',
   fechaNacimiento: 'fechaNacimiento',
   email: 'email',
   telefono: 'telefono'
@@ -875,6 +877,8 @@ export const CitaScalarFieldEnum = {
   id: 'id',
   estado: 'estado',
   fecha: 'fecha',
+  motivo: 'motivo',
+  urgencia: 'urgencia',
   pacienteId: 'pacienteId',
   medicoId: 'medicoId'
 } as const
@@ -947,6 +951,20 @@ export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'EstadoPaciente'
+ */
+export type EnumEstadoPacienteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoPaciente'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoPaciente[]'
+ */
+export type ListEnumEstadoPacienteFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoPaciente[]'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -971,6 +989,20 @@ export type EnumEstadoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMod
  * Reference to a field of type 'Estado[]'
  */
 export type ListEnumEstadoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Estado[]'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoUrgencia'
+ */
+export type EnumEstadoUrgenciaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoUrgencia'>
+    
+
+
+/**
+ * Reference to a field of type 'EstadoUrgencia[]'
+ */
+export type ListEnumEstadoUrgenciaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoUrgencia[]'>
     
 
 

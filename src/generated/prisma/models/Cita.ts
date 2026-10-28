@@ -42,6 +42,8 @@ export type CitaMinAggregateOutputType = {
   id: number | null
   estado: $Enums.Estado | null
   fecha: Date | null
+  motivo: string | null
+  urgencia: $Enums.EstadoUrgencia | null
   pacienteId: number | null
   medicoId: number | null
 }
@@ -50,6 +52,8 @@ export type CitaMaxAggregateOutputType = {
   id: number | null
   estado: $Enums.Estado | null
   fecha: Date | null
+  motivo: string | null
+  urgencia: $Enums.EstadoUrgencia | null
   pacienteId: number | null
   medicoId: number | null
 }
@@ -58,6 +62,8 @@ export type CitaCountAggregateOutputType = {
   id: number
   estado: number
   fecha: number
+  motivo: number
+  urgencia: number
   pacienteId: number
   medicoId: number
   _all: number
@@ -80,6 +86,8 @@ export type CitaMinAggregateInputType = {
   id?: true
   estado?: true
   fecha?: true
+  motivo?: true
+  urgencia?: true
   pacienteId?: true
   medicoId?: true
 }
@@ -88,6 +96,8 @@ export type CitaMaxAggregateInputType = {
   id?: true
   estado?: true
   fecha?: true
+  motivo?: true
+  urgencia?: true
   pacienteId?: true
   medicoId?: true
 }
@@ -96,6 +106,8 @@ export type CitaCountAggregateInputType = {
   id?: true
   estado?: true
   fecha?: true
+  motivo?: true
+  urgencia?: true
   pacienteId?: true
   medicoId?: true
   _all?: true
@@ -191,6 +203,8 @@ export type CitaGroupByOutputType = {
   id: number
   estado: $Enums.Estado
   fecha: Date
+  motivo: string
+  urgencia: $Enums.EstadoUrgencia
   pacienteId: number
   medicoId: number
   _count: CitaCountAggregateOutputType | null
@@ -222,6 +236,8 @@ export type CitaWhereInput = {
   id?: Prisma.IntFilter<"Cita"> | number
   estado?: Prisma.EnumEstadoFilter<"Cita"> | $Enums.Estado
   fecha?: Prisma.DateTimeFilter<"Cita"> | Date | string
+  motivo?: Prisma.StringFilter<"Cita"> | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFilter<"Cita"> | $Enums.EstadoUrgencia
   pacienteId?: Prisma.IntFilter<"Cita"> | number
   medicoId?: Prisma.IntFilter<"Cita"> | number
   medico?: Prisma.XOR<Prisma.MedicoScalarRelationFilter, Prisma.MedicoWhereInput>
@@ -232,6 +248,8 @@ export type CitaOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
+  motivo?: Prisma.SortOrder
+  urgencia?: Prisma.SortOrder
   pacienteId?: Prisma.SortOrder
   medicoId?: Prisma.SortOrder
   medico?: Prisma.MedicoOrderByWithRelationInput
@@ -245,6 +263,8 @@ export type CitaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CitaWhereInput | Prisma.CitaWhereInput[]
   estado?: Prisma.EnumEstadoFilter<"Cita"> | $Enums.Estado
   fecha?: Prisma.DateTimeFilter<"Cita"> | Date | string
+  motivo?: Prisma.StringFilter<"Cita"> | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFilter<"Cita"> | $Enums.EstadoUrgencia
   pacienteId?: Prisma.IntFilter<"Cita"> | number
   medicoId?: Prisma.IntFilter<"Cita"> | number
   medico?: Prisma.XOR<Prisma.MedicoScalarRelationFilter, Prisma.MedicoWhereInput>
@@ -255,6 +275,8 @@ export type CitaOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
+  motivo?: Prisma.SortOrder
+  urgencia?: Prisma.SortOrder
   pacienteId?: Prisma.SortOrder
   medicoId?: Prisma.SortOrder
   _count?: Prisma.CitaCountOrderByAggregateInput
@@ -271,6 +293,8 @@ export type CitaScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Cita"> | number
   estado?: Prisma.EnumEstadoWithAggregatesFilter<"Cita"> | $Enums.Estado
   fecha?: Prisma.DateTimeWithAggregatesFilter<"Cita"> | Date | string
+  motivo?: Prisma.StringWithAggregatesFilter<"Cita"> | string
+  urgencia?: Prisma.EnumEstadoUrgenciaWithAggregatesFilter<"Cita"> | $Enums.EstadoUrgencia
   pacienteId?: Prisma.IntWithAggregatesFilter<"Cita"> | number
   medicoId?: Prisma.IntWithAggregatesFilter<"Cita"> | number
 }
@@ -278,6 +302,8 @@ export type CitaScalarWhereWithAggregatesInput = {
 export type CitaCreateInput = {
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   medico: Prisma.MedicoCreateNestedOneWithoutCitaInput
   paciente: Prisma.PacienteCreateNestedOneWithoutCitaInput
 }
@@ -286,6 +312,8 @@ export type CitaUncheckedCreateInput = {
   id?: number
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   pacienteId: number
   medicoId: number
 }
@@ -293,6 +321,8 @@ export type CitaUncheckedCreateInput = {
 export type CitaUpdateInput = {
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   medico?: Prisma.MedicoUpdateOneRequiredWithoutCitaNestedInput
   paciente?: Prisma.PacienteUpdateOneRequiredWithoutCitaNestedInput
 }
@@ -301,6 +331,8 @@ export type CitaUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   pacienteId?: Prisma.IntFieldUpdateOperationsInput | number
   medicoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -309,6 +341,8 @@ export type CitaCreateManyInput = {
   id?: number
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   pacienteId: number
   medicoId: number
 }
@@ -316,12 +350,16 @@ export type CitaCreateManyInput = {
 export type CitaUpdateManyMutationInput = {
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
 }
 
 export type CitaUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   pacienteId?: Prisma.IntFieldUpdateOperationsInput | number
   medicoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -340,6 +378,8 @@ export type CitaCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
+  motivo?: Prisma.SortOrder
+  urgencia?: Prisma.SortOrder
   pacienteId?: Prisma.SortOrder
   medicoId?: Prisma.SortOrder
 }
@@ -354,6 +394,8 @@ export type CitaMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
+  motivo?: Prisma.SortOrder
+  urgencia?: Prisma.SortOrder
   pacienteId?: Prisma.SortOrder
   medicoId?: Prisma.SortOrder
 }
@@ -362,6 +404,8 @@ export type CitaMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   fecha?: Prisma.SortOrder
+  motivo?: Prisma.SortOrder
+  urgencia?: Prisma.SortOrder
   pacienteId?: Prisma.SortOrder
   medicoId?: Prisma.SortOrder
 }
@@ -460,9 +504,15 @@ export type EnumEstadoFieldUpdateOperationsInput = {
   set?: $Enums.Estado
 }
 
+export type EnumEstadoUrgenciaFieldUpdateOperationsInput = {
+  set?: $Enums.EstadoUrgencia
+}
+
 export type CitaCreateWithoutMedicoInput = {
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   paciente: Prisma.PacienteCreateNestedOneWithoutCitaInput
 }
 
@@ -470,6 +520,8 @@ export type CitaUncheckedCreateWithoutMedicoInput = {
   id?: number
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   pacienteId: number
 }
 
@@ -506,6 +558,8 @@ export type CitaScalarWhereInput = {
   id?: Prisma.IntFilter<"Cita"> | number
   estado?: Prisma.EnumEstadoFilter<"Cita"> | $Enums.Estado
   fecha?: Prisma.DateTimeFilter<"Cita"> | Date | string
+  motivo?: Prisma.StringFilter<"Cita"> | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFilter<"Cita"> | $Enums.EstadoUrgencia
   pacienteId?: Prisma.IntFilter<"Cita"> | number
   medicoId?: Prisma.IntFilter<"Cita"> | number
 }
@@ -513,6 +567,8 @@ export type CitaScalarWhereInput = {
 export type CitaCreateWithoutPacienteInput = {
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   medico: Prisma.MedicoCreateNestedOneWithoutCitaInput
 }
 
@@ -520,6 +576,8 @@ export type CitaUncheckedCreateWithoutPacienteInput = {
   id?: number
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   medicoId: number
 }
 
@@ -553,12 +611,16 @@ export type CitaCreateManyMedicoInput = {
   id?: number
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   pacienteId: number
 }
 
 export type CitaUpdateWithoutMedicoInput = {
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   paciente?: Prisma.PacienteUpdateOneRequiredWithoutCitaNestedInput
 }
 
@@ -566,6 +628,8 @@ export type CitaUncheckedUpdateWithoutMedicoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   pacienteId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -573,6 +637,8 @@ export type CitaUncheckedUpdateManyWithoutMedicoInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   pacienteId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -580,12 +646,16 @@ export type CitaCreateManyPacienteInput = {
   id?: number
   estado?: $Enums.Estado
   fecha?: Date | string
+  motivo: string
+  urgencia?: $Enums.EstadoUrgencia
   medicoId: number
 }
 
 export type CitaUpdateWithoutPacienteInput = {
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   medico?: Prisma.MedicoUpdateOneRequiredWithoutCitaNestedInput
 }
 
@@ -593,6 +663,8 @@ export type CitaUncheckedUpdateWithoutPacienteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   medicoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -600,6 +672,8 @@ export type CitaUncheckedUpdateManyWithoutPacienteInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   estado?: Prisma.EnumEstadoFieldUpdateOperationsInput | $Enums.Estado
   fecha?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  motivo?: Prisma.StringFieldUpdateOperationsInput | string
+  urgencia?: Prisma.EnumEstadoUrgenciaFieldUpdateOperationsInput | $Enums.EstadoUrgencia
   medicoId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -609,6 +683,8 @@ export type CitaSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   estado?: boolean
   fecha?: boolean
+  motivo?: boolean
+  urgencia?: boolean
   pacienteId?: boolean
   medicoId?: boolean
   medico?: boolean | Prisma.MedicoDefaultArgs<ExtArgs>
@@ -619,6 +695,8 @@ export type CitaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   estado?: boolean
   fecha?: boolean
+  motivo?: boolean
+  urgencia?: boolean
   pacienteId?: boolean
   medicoId?: boolean
   medico?: boolean | Prisma.MedicoDefaultArgs<ExtArgs>
@@ -629,6 +707,8 @@ export type CitaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   estado?: boolean
   fecha?: boolean
+  motivo?: boolean
+  urgencia?: boolean
   pacienteId?: boolean
   medicoId?: boolean
   medico?: boolean | Prisma.MedicoDefaultArgs<ExtArgs>
@@ -639,11 +719,13 @@ export type CitaSelectScalar = {
   id?: boolean
   estado?: boolean
   fecha?: boolean
+  motivo?: boolean
+  urgencia?: boolean
   pacienteId?: boolean
   medicoId?: boolean
 }
 
-export type CitaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estado" | "fecha" | "pacienteId" | "medicoId", ExtArgs["result"]["cita"]>
+export type CitaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estado" | "fecha" | "motivo" | "urgencia" | "pacienteId" | "medicoId", ExtArgs["result"]["cita"]>
 export type CitaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   medico?: boolean | Prisma.MedicoDefaultArgs<ExtArgs>
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
@@ -667,6 +749,8 @@ export type $CitaPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id: number
     estado: $Enums.Estado
     fecha: Date
+    motivo: string
+    urgencia: $Enums.EstadoUrgencia
     pacienteId: number
     medicoId: number
   }, ExtArgs["result"]["cita"]>
@@ -1097,6 +1181,8 @@ export interface CitaFieldRefs {
   readonly id: Prisma.FieldRef<"Cita", 'Int'>
   readonly estado: Prisma.FieldRef<"Cita", 'Estado'>
   readonly fecha: Prisma.FieldRef<"Cita", 'DateTime'>
+  readonly motivo: Prisma.FieldRef<"Cita", 'String'>
+  readonly urgencia: Prisma.FieldRef<"Cita", 'EstadoUrgencia'>
   readonly pacienteId: Prisma.FieldRef<"Cita", 'Int'>
   readonly medicoId: Prisma.FieldRef<"Cita", 'Int'>
 }
